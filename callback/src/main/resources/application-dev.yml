@@ -1,0 +1,7 @@
+logging:
+  level:
+    com.wejuai: debug
+    com.endofmaster: debug
+spring:
+  jpa:
+    show-sql: true

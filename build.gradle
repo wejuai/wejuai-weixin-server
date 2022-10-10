@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+subprojects {
+
+    group = 'com.wejuai.weixin'
+    version = '1.0.0'
+    sourceCompatibility = '11'
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        mavenLocal()
+        maven {
+            url 'https://maven.pkg.github.com/EndOfMaster/maven-repo'
+            credentials {
+                username = project.findProperty("githubUser") ?: System.getenv("githubUser")
+                password = project.findProperty("githubKey") ?: System.getenv("githubKey")
+            }
+        }
+        maven {
+            url 'https://maven.pkg.github.com/wejuai/maven-repo'
+            credentials {
+                username = project.findProperty("githubUser") ?: System.getenv("githubUser")
+                password = project.findProperty("githubKey") ?: System.getenv("githubKey")
+            }
+        }
+    }
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+}
